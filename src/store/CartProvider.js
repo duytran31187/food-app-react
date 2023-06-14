@@ -12,24 +12,22 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
-    // switch (action) {
-    //     case "ADD":
-    //         // break;
-    //     case 'REMOVE':
-    //         // break;
-    //     default:
-    //         return {
-    //             items: [
-    //                 {
-    //                     id: 'cv1',
-    //                     amount: 2
-    //                 }
-    //             ],
-    //             totalAmount: 0,
-    //         }
-    //         break;          
-    // }
-    return defaultCartState;
+    let updatedItems = state.items;
+    let totalAmount = state.totalAmount;
+    // eslint-disable-next-line default-case
+    switch (action.type) {
+        case "ADD":
+            updatedItems = state.items.concat(action.item);
+            totalAmount = totalAmount + action.item.price * action.item.amount;
+            return
+            // break;
+        case 'REMOVE':
+            // break;      
+    }
+    return {
+        items: updatedItems,
+        amount: totalAmount
+    };
 };
 
 const CartProvider = (props) => {
