@@ -33,6 +33,14 @@ const cartReducer = (state, action) => {
 };
 
 const CartProvider = (props) => {
+    //  
+    /**
+     * steps:
+     * 1:create cartContextData variable with DUMMuy data
+     * 2:pass data to CartContext.Provider value={cartContextData}
+     * 3. useReducer
+     * 
+     */
     const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultCartState);
 
     const addItemToCartHandler = (item) => {
