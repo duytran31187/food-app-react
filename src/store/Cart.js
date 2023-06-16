@@ -8,7 +8,7 @@ const cartSlice = createSlice({
     },
     reducers: {
         addItem(state, action) { // all action.data must be accessed via action.payload
-            console.log(action.payload)
+            console.log('addItem',action.payload)
             const updatedTotalAmount = state.totalAmount + action.payload.item.price * action.payload.item.amount;
             const existingCartItemIndex = state.items.findIndex(
                 (item) => item.id === action.payload.item.id
@@ -31,8 +31,9 @@ const cartSlice = createSlice({
             state.totalAmount = updatedTotalAmount;
         },
         removeItem(state, action) {
+            console.log(action.payload);
             const existingCartItemIndex = state.items.findIndex(
-                (item) => item.id === action.id
+                (item) => item.id === action.payload.id
             );
             const existingItem = state.items[existingCartItemIndex];
             const updatedTotalAmount = state.totalAmount - existingItem.price;
