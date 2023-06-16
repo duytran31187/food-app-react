@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import classes from "./HeaderCardButton.module.css";
 import CartIcon from "./CartIcon";
 import CartContext from "../../store/cart-context";
+import useIsHighlight from "../../hooks/use-higlight";
 
 const HeaderCardButton = props => {
-    const [isHighlight, setIsHighlight] = useState(false);
     const cartCtx = useContext(CartContext);
     
     const { items } = cartCtx;
@@ -12,22 +12,9 @@ const HeaderCardButton = props => {
     const numberOfCartItems = items.reduce((curNumber, item) => {
         return curNumber + item.amount;
     }, 0);
-
-    const btnClasses =`${classes.button} ${isHighlight ? classes.bump : ''}`;
-    useEffect(() => {
-        if (cartCtx.items.length === 0) {
-            return;
-        }
-        setIsHighlight(true);
-        const timer = setTimeout(() => {
-            setIsHighlight(false);
-        }, 300);
-        return () => { // this is called clean up function in reactjs
-            clearTimeout(timer);
-        };
-
-    }, [cartCtx.items]);
     
+    const isHighlight = useIsHighlight(cartCtx.items);
+    const btnClasses =`${classes.button} ${isHighlight ? classes.bump : ''}`;
 
     return (
         <button className={btnClasses}>
