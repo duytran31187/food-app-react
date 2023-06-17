@@ -97,7 +97,6 @@ const Checkout = props => {
                 </button>
                 <button className={classes.submit}>Confirm</button>
             </div>
-            <button className={classes.submit}>Checkout</button>
         </form>
     )
 };
