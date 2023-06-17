@@ -55,6 +55,12 @@ const cartReducer = (state, action) => {
           totalAmount: updatedTotalAmount
         };
       }
+    if (action.type === 'CLEAR') {
+        return {
+            items: [],
+            totalAmount: 0
+          };
+    }  
     return {
         items: updatedItems,
         totalAmount: totalAmount
@@ -83,11 +89,16 @@ const CartProvider = (props) => {
         dispatchCartAction({type: 'REMOVE', id: id});
     };
 
+    const clearCartHandler = () => {
+        dispatchCartAction({type: 'CLEAR'});
+    };
+
     const cartContextData = {
         items: cartState.items,
         totalAmount: cartState.totalAmount,
         addItem: addItemToCartHandler,
         removeItem: removeItemFromCartHandler,
+        clearCart: clearCartHandler
       };
     // NOTE: the value property must have data, unless error thrown.
       
