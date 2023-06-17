@@ -32,7 +32,9 @@ const DUMMY_MEALS = [
 
 const AvailableMeals = (props) => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     const fetchMeals = async () => {
       const response = await fetch('https://food-app-react-97e2c-default-rtdb.asia-southeast1.firebasedatabase.app/meals.json');
       const responseData = await response.json();
@@ -51,7 +53,11 @@ const AvailableMeals = (props) => {
     };
 
     fetchMeals();
+    const timer = setTimeout(() => {setIsLoading(false);}, 1000); // setTimeout, just want to see loading effect
   }, []);
+  if (isLoading) {
+    return (<p>IS LOADUNG.....</p>);
+  }
     const mealsList = meals.map((meal) => <MealItem
       key={meal.id}
       id = {meal.id}
