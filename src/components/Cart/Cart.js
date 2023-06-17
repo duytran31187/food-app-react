@@ -29,7 +29,18 @@ const Cart = props => {
         setIsCheckout(true);
     };
 
-    const submitOrderHandler = () => { //submit order
+    const submitOrderHandler = async (userData) => { //submit order
+        setIsSubmitting(true);
+        await fetch('https://food-app-react-97e2c-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json', {
+        method: 'POST',
+        body: JSON.stringify({
+            user: userData,
+            orderedItems: cartCtx.items,
+        }),
+        });
+        setIsSubmitting(false);
+        setDidSubmit(true);
+        cartCtx.clearCart();
     }
     
     const cartItems = <ul className={classes['cart-items']}>{items.map(item => {
