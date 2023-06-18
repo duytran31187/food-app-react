@@ -5,11 +5,18 @@ import React from "react";
 import CartProvider from "./store/CartProvider";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/Home";
+import RootLayout from "./pages/Root";
 import ProductsPage from "./pages/Products";
 
 const router = createBrowserRouter([
-  {path: '/', element: <HomePage />},
-  {path: '/products', element: <ProductsPage />}
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      {path: '/', element: <HomePage />},
+      {path: '/products', element: <ProductsPage />}
+    ]
+  },
 ]);
 
 function App() {
@@ -26,7 +33,7 @@ function App() {
   };
 
   return (
-    <RouterProvider router={router} />
+    <RouterProvider router={router} /> // RouterProvider works if it put at App only
   );
 }
 
