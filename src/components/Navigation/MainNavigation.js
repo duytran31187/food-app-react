@@ -16,6 +16,13 @@ function MainNavigation() {
             >Home</NavLink>
           </li>
           <li>
+            <NavLink to="/foods"
+            className={({ isActive }) =>
+              isActive ? classes.active : undefined
+            }
+            >Foods order</NavLink>
+          </li>
+          <li>
             <NavLink to="/products"
             className={({ isActive }) =>
               isActive ? classes.active : undefined

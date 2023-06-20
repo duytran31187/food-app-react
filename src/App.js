@@ -1,8 +1,4 @@
-import Header from "./components/Layout/Header";
-import Meals from "./components/Meals/Meals";
-import Cart from "./components/Cart/Cart";
 import React from "react";
-import CartProvider from "./store/CartProvider";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/Home";
 import RootLayout from "./pages/Root";
@@ -11,6 +7,7 @@ import ErrorPage from "./pages/Error";
 import ProductDetailPage from "./pages/ProductDetail";
 import EventsPage from "./pages/Events/Events";
 import EventDetailPage from "./pages/Events/EventDetail";
+import FoodPage from "./pages/Food";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +20,7 @@ const router = createBrowserRouter([
       {path: '/products/:productId', element: <ProductDetailPage />},
     ]
   },
+  {path:'/foods', element: <FoodPage />},
   {
     path: '/events',
     element: <RootLayout />,
@@ -35,20 +33,8 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [cartIsShown, setCartIsShown] = React.useState(false);
-
-  const showCartHandler = () => {
-    console.log("showCart");
-    setCartIsShown(true);
-  };
-
-  const hideCartHandler = () => {
-    console.log("hideCartHandler");
-    setCartIsShown(false);
-  };
-
   return (
-    <RouterProvider router={router} /> // RouterProvider works if it put at App only
+    <RouterProvider router={router} />
   );
 }
 
