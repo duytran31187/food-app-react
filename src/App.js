@@ -8,7 +8,7 @@ import ProductDetailPage from "./pages/ProductDetail";
 import EventsPage from "./pages/Events/Events";
 import EventDetailPage from "./pages/Events/EventDetail";
 import FoodPage from "./pages/Food";
-import AuthenticationPage from "./pages/Authentication";
+import AuthenticationPage, { action as authAction } from "./pages/Authentication";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,8 @@ const router = createBrowserRouter([
       {path:'/foods', element: <FoodPage />},
       {
           path: 'auth',
-          element: <AuthenticationPage />
+          element: <AuthenticationPage />,
+          action: authAction
       },
       {
         path: '/events',
