@@ -5,10 +5,17 @@ import RootLayout from "./pages/Root";
 import ProductsPage from "./pages/Products";
 import ErrorPage from "./pages/Error";
 import ProductDetailPage from "./pages/ProductDetail";
-import EventsPage from "./pages/Events/Events";
-import EventDetailPage from "./pages/Events/EventDetail";
+import EventsPage, { loader as eventsLoader } from "./pages/Events/Events";
+import EventDetailPage, {
+  loader as eventDetailLoader,
+  action as deleteEventAction,
+} from './pages/Events/EventDetail';
 import FoodPage from "./pages/Food";
 import AuthenticationPage, { action as authAction } from "./pages/Authentication";
+import EventsRootLayout from "./pages/Events/EventRoot";
+import EditEventPage from './pages/Events/EditEvent';
+import { action as manipulateEventAction } from './components/Events/EventForm';
+import NewEventPage from "./pages/Events/NewEvent";
 
 const router = createBrowserRouter([
   {
@@ -26,11 +33,37 @@ const router = createBrowserRouter([
           action: authAction
       },
       {
-        path: '/events',
+        path: 'events',
+        element: <EventsRootLayout />,
         children: [
-          {index: true, element: <EventsPage />},
-          {path:':eventId', element: <EventDetailPage />},
-        ]
+          {
+            index: true,
+            element: <EventsPage />,
+            loader: eventsLoader,
+          },
+          {
+            path: ':eventId',
+            id: 'event-detail',
+            loader: eventDetailLoader,
+            children: [
+              {
+                index: true,
+                element: <EventDetailPage />,
+                action: deleteEventAction,
+              },
+              {
+                path: 'edit',
+                element: <EditEventPage />,
+                action: manipulateEventAction,
+              },
+            ],
+          },
+          {
+            path: 'new',
+            element: <NewEventPage />,
+            action: manipulateEventAction,
+          },
+        ],
       },
     ]
   }
