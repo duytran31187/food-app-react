@@ -16,6 +16,7 @@ const PRODUCTS = [
     },
 ]
 const ProductsPage = (props) => {
+    
     return (
         <section>
             Products page
