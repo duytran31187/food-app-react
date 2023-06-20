@@ -8,6 +8,7 @@ import ProductDetailPage from "./pages/ProductDetail";
 import EventsPage from "./pages/Events/Events";
 import EventDetailPage from "./pages/Events/EventDetail";
 import FoodPage from "./pages/Food";
+import AuthenticationPage from "./pages/Authentication";
 
 const router = createBrowserRouter([
   {
@@ -18,18 +19,20 @@ const router = createBrowserRouter([
       {index: true, element: <HomePage />},
       {path: '/products', element: <ProductsPage />},
       {path: '/products/:productId', element: <ProductDetailPage />},
+      {path:'/foods', element: <FoodPage />},
+      {
+          path: 'auth',
+          element: <AuthenticationPage />
+      },
+      {
+        path: '/events',
+        children: [
+          {index: true, element: <EventsPage />},
+          {path:':eventId', element: <EventDetailPage />},
+        ]
+      },
     ]
-  },
-  {path:'/foods', element: <FoodPage />},
-  {
-    path: '/events',
-    element: <RootLayout />,
-    // errorElement: <ErrorPage />,
-    children: [
-      {index: true, element: <EventsPage />},
-      {path:':eventId', element: <EventDetailPage />},
-    ]
-  },
+  }
 ]);
 
 function App() {
