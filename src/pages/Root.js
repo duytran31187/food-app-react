@@ -4,26 +4,26 @@ import { useEffect } from "react";
 import { getTokenDuration } from "../util/auth";
 
 const RootLayout = (props) => {
-    //const navigation = useNavigation();
-    const token = useLoaderData();
-    const submit = useSubmit();
+    const navigation = useNavigation();
+    // const token = useLoaderData();
+    // const submit = useSubmit();
 
-    useEffect(() => {
-        if (!token) {
-            return;
-        }
-        if (token === 'EXPIRED') {
-            submit(null, {action:'/logout', method: 'post'});
-            return;
-        }
-        const tokenDuration = getTokenDuration();
-        setTimeout(() => {
-            submit(null, {action:'/logout', method: 'post'});
-        }, tokenDuration);
-    }, [token, submit]);
+    // useEffect(() => {
+    //     if (!token) {
+    //         return;
+    //     }
+    //     if (token === 'EXPIRED') {
+    //         submit(null, {action:'/logout', method: 'post'});
+    //         return;
+    //     }
+    //     const tokenDuration = getTokenDuration();
+    //     setTimeout(() => {
+    //         submit(null, {action:'/logout', method: 'post'});
+    //     }, tokenDuration);
+    // }, [token, submit]);
     return (
         <>
-            {/* {navigation.state === 'loading' && <p>Loading...</p>} */}
+            {navigation.state === 'loading' && <p>Loading by route...</p>}
             <MainNavigation />
             <Outlet />
         </>
