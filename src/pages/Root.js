@@ -14,7 +14,7 @@ const RootLayout = (props) => {
         setTimeout(() => {
             submit(null, {action:'/logout', method: 'post'})
         }, 1*60*60*1000); // autolog out after 1 hour
-    });
+    }, [token, submit]);
     return (
         <>
             {/* {navigation.state === 'loading' && <p>Loading...</p>} */}
