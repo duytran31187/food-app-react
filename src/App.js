@@ -16,12 +16,16 @@ import EventsRootLayout from "./pages/Events/EventRoot";
 import EditEventPage from './pages/Events/EditEvent';
 import { action as manipulateEventAction } from './components/Events/EventForm';
 import NewEventPage from "./pages/Events/NewEvent";
+import {action as logoutAction} from "./pages/Logout";
+import { tokenLoader } from "./util/auth";
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+    id: "rootRouter",
+    loader: tokenLoader,
     children: [
       {index: true, element: <HomePage />},
       {path: '/products', element: <ProductsPage />},
@@ -31,6 +35,10 @@ const router = createBrowserRouter([
           path: 'auth',
           element: <AuthenticationPage />,
           action: authAction
+      },
+      {
+        path: 'logout',
+        action: logoutAction,
       },
       {
         path: 'events',
