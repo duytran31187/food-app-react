@@ -4,6 +4,11 @@ export function getAuthToken() {
     return token;
 }
 
+export function tokenLoader() {
+  const token = getAuthToken();
+  return token;
+}
+
 export function checkAuthLoader() {
   // this function will be added in the next lecture
   // make sure it looks like this in the end
