@@ -6,10 +6,10 @@ import HeaderCardButton from './HeaderCardButton';
 const Header = (props) => {
     return (
         <Fragment>
-            <header className={classes.header}>
+            <section className={classes['header-meals']}>
                 <h1>React Meal</h1>
                 <HeaderCardButton onShowCart={props.onShowCart}/>
-            </header>
+            </section>
             <div className={classes['main-image']}>
                 <img src={mealImage} alt='A table with full of foods' />
             </div>

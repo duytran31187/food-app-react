@@ -68,7 +68,7 @@ const AvailableMeals = (props) => {
     });
   }, []);
   if (isLoading) {
-    return (<p>IS LOADING.....</p>);
+    return (<p>IS LOADING in AvailableMeals.....</p>);
   }
   if (httpError) {
     return (
