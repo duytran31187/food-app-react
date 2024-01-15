@@ -15,10 +15,10 @@ router.get('/', async (req, res, next) => {
   try {
 
     const events = await getAll();
-
+    const timeOut = 0.1*60*1000;
     setTimeout(() => {
       res.json({ events: events });
-    }, 1*60*1000);
+    }, timeOut); // just want to simulate real env
   } catch (error) {
     next(error);
   }
